@@ -120,8 +120,8 @@ if st.button("Process"):
                     found_skills.add(ngram)
 
             return found_skills
-        df['Skills']=df['Clean_Resume'].apply(lambda x: extract_skills(x))
-        Skills = str(df['Skills'][0])
+        #df['Skills']=df['Clean_Resume'].apply(lambda x: extract_skills(x))
+        #Skills = str(df['Skills'][0])
 
         # For extracting phone number from resume
         def find_phone_number(text):
