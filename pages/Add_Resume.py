@@ -11,6 +11,9 @@ import spacy
 from pyresparser import ResumeParser
 import nltk
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+from nltk import sent_tokenize
+nltk.download('punkt')
+nltk.download('popular')
 import pandas as pd
 import numpy as np
 import sqlite3,csv
@@ -92,9 +95,12 @@ if st.button("Process"):
         df_skill = df_skill[0].str.replace(',','')
         df_skill = pd.DataFrame(df_skill)
         SKILLS_DB = df_skill[0].tolist()
-
+        
+        
+        
         def extract_skills(text):
-            stop_words = set(nltk.corpus.stopwords.words('english'))
+            #stop_words = set(nltk.corpus.stopwords.words('english'))
+            stop_words = nltk.corpus.stopwords.words('english')
             word_tokens = nltk.tokenize.word_tokenize(text)
             # remove the stop words
             filtered_tokens = [w for w in word_tokens if w not in stop_words]
