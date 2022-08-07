@@ -6,3 +6,4 @@ gensim==4.1.2
 wordcloud==1.8.2.2
 spacy==2.3.7
 pyLDAvis==3.3.1
+pyreparser = 1.0.6
