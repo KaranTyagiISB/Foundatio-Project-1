@@ -10,8 +10,7 @@ import re
 import spacy
 from pyresparser import ResumeParser
 import nltk
-#nltk.download('stopwords')
-nltk.download()
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import pandas as pd
 import numpy as np
 import sqlite3,csv
