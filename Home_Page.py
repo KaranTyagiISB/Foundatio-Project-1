@@ -8,7 +8,7 @@ st.set_page_config(
 )
 
 from PIL import Image
-image = Image.open('logo.png')
+image = Image.open('Logo.PNG')
 st.image(image)
 
 st.title("BestFynd")
