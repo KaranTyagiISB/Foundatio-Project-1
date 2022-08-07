@@ -10,6 +10,7 @@ import re
 import spacy
 from pyresparser import ResumeParser
 import nltk
+#nltk.download('stopwords')
 nltk.download('stopwords')
 import pandas as pd
 import numpy as np
