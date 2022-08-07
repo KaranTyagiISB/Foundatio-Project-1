@@ -11,7 +11,7 @@ import spacy
 from pyresparser import ResumeParser
 import nltk
 #nltk.download('stopwords')
-nltk.download('stopwords')
+nltk.download()
 import pandas as pd
 import numpy as np
 import sqlite3,csv
