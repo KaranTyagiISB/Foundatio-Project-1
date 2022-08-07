@@ -1,0 +1,104 @@
+from pyresparser import ResumeParser
+import os
+from docx import Document
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+import re
+import spacy
+from pyresparser import ResumeParser
+import nltk
+import pandas as pd
+import numpy as np
+import sqlite3,csv
+from sqlite3 import Error
+import docx2txt
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+
+pd.set_option('display.max_colwidth', None)
+
+
+import streamlit as st
+
+st.set_page_config(
+    page_title="Hello",
+    page_icon="👋",
+)
+
+st.subheader("JD Match")
+
+st.text("")
+st.text("")
+
+conn = sqlite3.connect("C:/Users/ktyagi/Desktop/ISB/FP1/Project 3/resume_database.db")
+c= conn.cursor()
+
+c.execute('Select * from Resume_Table')
+data = c.fetchall()
+
+title = [i[0] for i in c.description]
+df_head = pd.DataFrame(title)
+df_head  = df_head.T
+
+all_data = []
+for row in data:
+    all_data.append(row)
+df = pd.DataFrame(all_data)
+
+df_all = df_head.append(df)
+df_all = df_all.rename(columns=df_all.iloc[0]).drop(df_all.index[0])
+
+# Clean_Resume =  str(df_all['Clean_Resume'])
+
+st.subheader("JD Files")
+docx_file = st.file_uploader("Upload JD", type=["pdf","docx","txt"])
+
+Match_Threshold = st.text_input('Please enter the Threshold (0-100)', '70')
+st.write('Similarity score Threshold is ', Match_Threshold)
+Match_Threshold = int(Match_Threshold)
+
+if st.button("Process"):
+    if docx_file is not None:
+
+        if docx_file.type == "text/plain":
+            # Read as string (decode bytes to string)
+            raw_text = str(docx_file.read(),"utf-8")
+            # st.text(raw_text)
+
+        elif docx_file.type == "application/pdf":
+            try:
+                with pdfplumber.open(docx_file) as pdf:
+                    pages = pdf.pages[0]
+                    st.write(pages.extract_text())
+            except:
+                st.write("None")
+
+
+        else:
+            raw_text = docx2txt.process(docx_file)
+
+
+    def match(resume) :
+
+        text = [resume, raw_text]
+
+        cv = CountVectorizer()
+        count_matrix = cv.fit_transform(text)
+        match_score = round(cosine_similarity(count_matrix)[0,1]*100,2)
+
+        return match_score
+
+    df_all["Match_Score"] = df_all["Clean_Resume"].apply(lambda x : match(x))
+    df_all = df_all.sort_values("Match_Score",ascending= False)
+
+    print(df_all)
+
+
+    # Match_thres = 70
+    df_all["Resume_Passed"] = np.where(df_all["Match_Score"]>= Match_Threshold,1,0)
+    df_filter = df_all.loc[df_all['Resume_Passed']==1]
+    st.write(df_filter)
