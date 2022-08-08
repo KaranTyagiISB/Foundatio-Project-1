@@ -1,6 +1,6 @@
 from pyresparser import ResumeParser
 import os
-from docx import Document
+#from docx import Document
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
