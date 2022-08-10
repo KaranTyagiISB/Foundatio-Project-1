@@ -9,6 +9,7 @@ import re
 import spacy
 from pyresparser import ResumeParser
 import nltk
+nltk.download("stopwords")
 import sqlite3,csv
 from sqlite3 import Error
 import docx2txt
