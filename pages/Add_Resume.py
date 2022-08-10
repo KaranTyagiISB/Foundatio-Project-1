@@ -1,4 +1,3 @@
-from pyresparser import ResumeParser
 import os
 from docx import Document
 import numpy as np
@@ -10,8 +9,6 @@ import re
 import spacy
 from pyresparser import ResumeParser
 import nltk
-import pandas as pd
-import numpy as np
 import sqlite3,csv
 from sqlite3 import Error
 import docx2txt
