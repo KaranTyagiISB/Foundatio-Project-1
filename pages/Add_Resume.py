@@ -7,7 +7,7 @@ import warnings
 warnings.filterwarnings('ignore')
 import re
 import spacy
-from pyresparser import ResumeParser
+#from pyresparser import ResumeParser
 import nltk
 nltk.download("stopwords")
 import sqlite3,csv
