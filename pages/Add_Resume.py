@@ -195,7 +195,7 @@ if st.button("Process"):
                         port="5432")
             c = conn.cursor()
             #c.execute("INSERT INTO resume_table ('Category','Resume','Clean_Resume','Qualification','City','Skills','Phone_Number','Email_id') VALUES (?,?,?,?,?,?,?,?)",(Category,Resume,Clean_Resume,Qualification,City,Skills,Phone_Number,Email_id))
-            postgres_insert_query = """ INSERT INTO user_data (Category,Resume,Clean_Resume,Qualification,City,Skills,Phone_Number,Email_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"""
+            postgres_insert_query = """ INSERT INTO resume_table (Category,Resume,Clean_Resume,Qualification,City,Skills,Phone_Number,Email_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"""
             record_to_insert = (Category,Resume,Clean_Resume,Qualification,City,Skills,Phone_Number,Email_id)
             cursor.execute(postgres_insert_query, record_to_insert)
             conn.commit()
