@@ -194,7 +194,7 @@ if st.button("Process"):
                         password="mynewpassword",
                         port="5432")
             c = conn.cursor()
-            c.execute("INSERT INTO Resume_Table ('Category','Resume','Clean_Resume','Qualification','City','Skills','Phone_Number','Email_id') VALUES (?,?,?,?,?,?,?,?)",(Category,Resume,Clean_Resume,Qualification,City,Skills,Phone_Number,Email_id))
+            c.execute("INSERT INTO resume_table ('Category','Resume','Clean_Resume','Qualification','City','Skills','Phone_Number','Email_id') VALUES (?,?,?,?,?,?,?,?)",(Category,Resume,Clean_Resume,Qualification,City,Skills,Phone_Number,Email_id))
             conn.commit()
             conn.close()
             st.success('Resume uploaded successfully.')
