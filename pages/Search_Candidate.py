@@ -138,7 +138,7 @@ if st.button("Process"):
     df_all["Match_Score"] = df_all["Clean_Resume"].apply(lambda x : match(x))
     df_all["Top_Match_Words"] = df_all["Clean_Resume"].apply(lambda x : top_words(x))
     df_all = df_all.sort_values("Match_Score",ascending= False)
-    df_all.drop_duplicates(subset = 'Resume', keep = 'first', inplace = True)
+    df_all.drop_duplicates(subset = 'Skills', keep = 'first', inplace = True)
     print(df_all)
 
 
