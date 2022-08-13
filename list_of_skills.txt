@@ -2128,5 +2128,8 @@ zoho-crm,
 zookeeper,
 'data science','html','css','php','bootstrap','jquery','ajax','java','data visualization','word',
     'excel',
-    'English'   
+    'English',
+R Software,
+SPSS,
+Microsoft Excel
            
