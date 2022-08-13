@@ -2129,7 +2129,10 @@ zookeeper,
 'data science','html','css','php','bootstrap','jquery','ajax','java','data visualization','word',
     'excel',
     'English',
-R Software,
-SPSS,
-Microsoft Excel
+r software,
+spss,
+microsoft excel,
+python,
+scikit,
+machine learning,
            
