@@ -104,14 +104,15 @@ if st.button("Process"):
         else:
             raw_text = docx2txt.process(docx_file)
 
-
+    stopwords = nltk.corpus.stopwords.words('english')
+    
     def match(resume) :
 
         text = [resume, raw_text]
 
-        idf = TfidfVectorizer()
+        idf = TfidfVectorizer(stop_words = stopwords)
         count_matrix = idf.fit_transform(text)
-        match_score = round(cosine_similarity(count_matrix)[0,1]*100,2)
+        match_score = (round(cosine_similarity(count_matrix)[0,1]*100,2))*2.5
 
         return match_score
 
